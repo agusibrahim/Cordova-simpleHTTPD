@@ -26,18 +26,28 @@ function gotos(url){
 	window.open(url, "_system", "location=no");
 	//navigator.app.loadUrl(url, { openExternal:true });
 }
+function qrgen(txt){
+	var qrcode = new QRCode(document.getElementById("qrcode"), {
+	width : 100,
+	height : 100
+	});
+	qrcode.makeCode(txt);
+}
 function start(port, pwd, local){
 	httpd.startServer({
 		'www_root' : pwd,
     	'port' : Number(port),
     	'localhost_only' : local
 	}, function (url){
-		//var url="http://localhost:"+url.split(":")[2];
+		if (!url.match(/\/\/(127|192)/)){
+			url="http://localhost:"+url.split(":")[2];
+		}
 		window.notif=myApp.modal({
 		title: "Server Dijalankan",
-		text: "Listen on "+url+"<br><a onclick='gotos(\""+url+"\")' class='button button-fill color-blue' target='_blank' data-rel='external'>Buka Browser</a>"+
+		text: "<div align='center' id='qrcode'></div>Listen on "+url+"<br><a onclick='gotos(\""+url+"\")' class='button button-fill color-blue' target='_blank' data-rel='external'>Buka Browser</a>"+
 		"<a href='#' onclick='setop()' class='button button-fill color-red ngesortitik'>Matikan Server</a>",
 		});
+		qrgen(url);
 	}, function (error){
 		alert("Error "+error);
 	});
