@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="id.agusibrahim.httpdsimple" version="2.0.0">
+	<name>Hello Cordova</name>
+	<description>A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+	<author email="dev@cordova.apache.org" href="http://cordova.io">Apache Cordova Team
+    </author>
+	<access origin="*"/>
+	<content src="index.html"/>
+	<preference name="loglevel" value="DEBUG"/>
+	<preference name="useBrowserHistory" value="true"/>
+	<preference name="exit-on-suspend" value="false"/>
+	<preference name="showTitle" value="true"/>
+	<feature name="CorHttpd">
+		<param name="android-package" value="com.rjfun.cordova.httpd.CorHttpd"/>
+	</feature>
+	<feature name="InAppBrowser">
+		<param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser"/>
+	</feature>
+</widget>
